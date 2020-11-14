@@ -3,6 +3,11 @@ int ledMotM = 14;
 int ledMotD = 15;
 int ledEt1 = 45;
 int ledDetecEt1 =13;
+int ledEt2 = 44;
+int ledDetecEt2 =12;
+int ledDetecEt3 =11;
+int ledDetecEt4 =10;
+int ledDetecEt5 =9;
 
 void setup() {
   pinMode(ledUrgence, OUTPUT);
@@ -11,7 +16,12 @@ void setup() {
   pinMode(ledMotD,OUTPUT);
   pinMode(ledEt1,OUTPUT);
   pinMode(ledEt1,INPUT);
+  pinMode(ledEt2,INPUT);
   pinMode(ledDetecEt1,OUTPUT);
+  pinMode(ledDetecEt2,OUTPUT);
+  pinMode(ledDetecEt3,OUTPUT);
+  pinMode(ledDetecEt4,OUTPUT);
+  pinMode(ledDetecEt5,OUTPUT);
 }
 
 void arret_urgence() {
@@ -25,14 +35,40 @@ void descendreEtage1() {
       digitalWrite(ledEt1,HIGH);
       digitalWrite(ledMotD,HIGH); 
   }
-}
-void loop(){
-  if(digitalRead(ledUrgence) == LOW){
-    descendreEtage1();
-    if(digitalRead(ledDetecEt1) == HIGH){
+  if(digitalRead(ledDetecEt1) == HIGH){
       digitalWrite(ledMotD,LOW);
+  }
+}
+
+void allezEtage2() {
+  if(digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
+    if(digitalRead(ledEt2) == HIGH){
+        digitalWrite(ledEt2,HIGH);
+        digitalWrite(ledMotD,HIGH); 
     }
-  }else{
+  }else {
+    if(digitalRead(ledEt2) == HIGH){
+        digitalWrite(ledEt2,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt2) == HIGH){
+        digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+    }
+}
+
+void loop(){
+  if(digitalRead(ledUrgence) == HIGH){
     arret_urgence();
+  }else{
+    descendreEtage1();
+    allezEtage2();
+  }
+  digitalWrite(ledDetecEt1,HIGH);
+  if(digitalRead(38) == HIGH){
+    digitalWrite(ledDetecEt2,HIGH);
+  }else {
+    digitalWrite(ledDetecEt2,LOW);
   }
 }
