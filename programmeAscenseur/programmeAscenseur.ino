@@ -18,6 +18,7 @@ void setup() {
   pinMode(ledEt1,OUTPUT);
   pinMode(ledEt1,INPUT);
   pinMode(ledEt2,INPUT);
+  pinMode(ledEt3,INPUT);
   pinMode(ledDetecEt1,OUTPUT);
   pinMode(ledDetecEt2,OUTPUT);
   pinMode(ledDetecEt3,OUTPUT);
