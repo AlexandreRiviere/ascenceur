@@ -4,6 +4,7 @@ int ledMotD = 15;
 int ledEt1 = 45;
 int ledDetecEt1 =13;
 int ledEt2 = 44;
+int ledEt4 = 42;
 int ledDetecEt2 =12;
 int ledDetecEt3 =11;
 int ledDetecEt4 =10;
@@ -17,6 +18,7 @@ void setup() {
   pinMode(ledEt1,OUTPUT);
   pinMode(ledEt1,INPUT);
   pinMode(ledEt2,INPUT);
+  pinMode(ledEt4,INPUT);
   pinMode(ledDetecEt1,OUTPUT);
   pinMode(ledDetecEt2,OUTPUT);
   pinMode(ledDetecEt3,OUTPUT);
@@ -53,6 +55,24 @@ void allezEtage2() {
     }
   }
   if(digitalRead(ledDetecEt2) == HIGH){
+        digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+    }
+}
+
+void allerEtage4() {
+  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
+    if(digitalRead(ledEt4) == HIGH){
+        digitalWrite(ledEt4,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+  }else {
+    if(digitalRead(ledEt4) == HIGH){
+        digitalWrite(ledEt4,HIGH);
+        digitalWrite(ledMotD,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt4) == HIGH){
         digitalWrite(ledMotD,LOW);
         digitalWrite(ledMotM,LOW);
     }
