@@ -4,6 +4,7 @@ int ledMotD = 15;
 int ledEt1 = 45;
 int ledDetecEt1 =13;
 int ledEt2 = 44;
+int ledEt3 = 43;
 int ledDetecEt2 =12;
 int ledDetecEt3 =11;
 int ledDetecEt4 =10;
@@ -53,6 +54,24 @@ void allezEtage2() {
     }
   }
   if(digitalRead(ledDetecEt2) == HIGH){
+        digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+    }
+}
+
+void allerEtage3() {
+  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH){
+    if(digitalRead(ledEt3) == HIGH){
+        digitalWrite(ledEt3,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+  }else {
+    if(digitalRead(ledEt3) == HIGH){
+        digitalWrite(ledEt3,HIGH);
+        digitalWrite(ledMotD,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt3) == HIGH){
         digitalWrite(ledMotD,LOW);
         digitalWrite(ledMotM,LOW);
     }
