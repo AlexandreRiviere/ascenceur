@@ -72,3 +72,13 @@ void loop(){
     digitalWrite(ledDetecEt2,LOW);
   }
 }
+
+void allezEtage5() {
+    if(digitalRead(ledEt5) == HIGH){
+        digitalWrite(ledEt5,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+    if(digitalRead(ledDetecEt5) == HIGH){
+        digitalWrite(ledMotM,LOW);
+    }
+}
