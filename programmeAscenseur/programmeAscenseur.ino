@@ -77,7 +77,7 @@ void allerEtage3() {
        digitalWrite(ledMotD,LOW);
        digitalWrite(ledMotM,LOW);
   }
-
+}
 void allerEtage4() {
   if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
     if(digitalRead(ledEt4) == HIGH){
