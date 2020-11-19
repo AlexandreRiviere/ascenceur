@@ -1,5 +1,4 @@
-int ledUrgence = 46;
-int ledMotM = 14;
+
 int ledMotD = 15;
 int ledEt1 = 45;
 int ledDetecEt1 =13;
@@ -107,7 +106,7 @@ void allerEtage5() {
 }
 
 void loop(){
-  if(digitalRead(ledUrgence) == HIGH){
+ if(digitalRead(ledUrgence) == HIGH){
     arret_urgence();
   }else{
     descendreEtage1();
