@@ -5,6 +5,7 @@ int ledEt1 = 45;
 int ledDetecEt1 =13;
 int ledEt2 = 44;
 int ledEt3 = 43;
+int ledEt4 = 42;
 int ledDetecEt2 =12;
 int ledDetecEt3 =11;
 int ledDetecEt4 =10;
@@ -19,6 +20,7 @@ void setup() {
   pinMode(ledEt1,INPUT);
   pinMode(ledEt2,INPUT);
   pinMode(ledEt3,INPUT);
+  pinMode(ledEt4,INPUT);
   pinMode(ledDetecEt1,OUTPUT);
   pinMode(ledDetecEt2,OUTPUT);
   pinMode(ledDetecEt3,OUTPUT);
@@ -27,7 +29,6 @@ void setup() {
 }
 
 void arret_urgence() {
-  // put your main code here, to run repeatedly:
     digitalWrite(ledMotM,LOW);
     digitalWrite(ledMotD,LOW);
 }
@@ -73,7 +74,34 @@ void allerEtage3() {
     }
   }
   if(digitalRead(ledDetecEt3) == HIGH){
+       digitalWrite(ledMotD,LOW);
+       digitalWrite(ledMotM,LOW);
+  }
+
+void allerEtage4() {
+  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
+    if(digitalRead(ledEt4) == HIGH){
+        digitalWrite(ledEt4,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+  }else {
+    if(digitalRead(ledEt4) == HIGH){
+        digitalWrite(ledEt4,HIGH);
+        digitalWrite(ledMotD,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt4) == HIGH){
         digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+    }
+}
+
+void allezEtage5() {
+    if(digitalRead(ledEt5) == HIGH){
+        digitalWrite(ledEt5,HIGH);
+        digitalWrite(ledMotM,HIGH);
+    }
+    if(digitalRead(ledDetecEt5) == HIGH){
         digitalWrite(ledMotM,LOW);
     }
 }
@@ -91,14 +119,4 @@ void loop(){
   }else {
     digitalWrite(ledDetecEt2,LOW);
   }
-}
-
-void allezEtage5() {
-    if(digitalRead(ledEt5) == HIGH){
-        digitalWrite(ledEt5,HIGH);
-        digitalWrite(ledMotM,HIGH); 
-    }
-    if(digitalRead(ledDetecEt5) == HIGH){
-        digitalWrite(ledMotM,LOW);
-    }
 }
