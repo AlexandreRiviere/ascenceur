@@ -43,7 +43,7 @@ void descendreEtage1() {
   }
 }
 
-void allezEtage2() {
+void allerEtage2() {
   if(digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
     if(digitalRead(ledEt2) == HIGH){
         digitalWrite(ledEt2,HIGH);
@@ -96,7 +96,7 @@ void allerEtage4() {
     }
 }
 
-void allezEtage5() {
+void allerEtage5() {
     if(digitalRead(ledEt5) == HIGH){
         digitalWrite(ledEt5,HIGH);
         digitalWrite(ledMotM,HIGH);
@@ -111,7 +111,7 @@ void loop(){
     arret_urgence();
   }else{
     descendreEtage1();
-    allezEtage2();
+    allerEtage2();
   }
   digitalWrite(ledDetecEt1,HIGH);
   if(digitalRead(38) == HIGH){
