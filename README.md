@@ -12,8 +12,7 @@ RIVIÈRE Alexandre, développeur, Product Owner <br>
 
 ### 2.Liens
 #### 2.1.Zenhub
-Pas mis en place car pas vu pour le moment. <br>
-Un board est présent sur le Drive
+Le lien vers le Zenhub est disponible <a href="https://app.zenhub.com/workspaces/ascenseur-5fb553d819913c0012653148/board">ici</a>
 
 #### 2.2.Drive
 Le lien vers le Google Drive est disponible <a href="https://drive.google.com/drive/folders/16rngqCE3_gd0lg7ApQMw1Mo_83UBRimC?usp=sharing
