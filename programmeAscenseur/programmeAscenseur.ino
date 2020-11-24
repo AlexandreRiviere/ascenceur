@@ -106,6 +106,42 @@ void allezEtage5() {
     }
 }
 
+void monterDepuisEtage2(){
+  if(digitalRead(ledDetecEt1)== HIGH){
+    if (digitalRead(ledEt2M) == HIGH){
+        digitalWrite(ledEt2M,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+  }else {
+    if(digitalRead(ledEt2M) == HIGH){
+        digitalWrite(ledEt2M,HIGH);
+        digitalWrite(ledMotD,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt2) == HIGH){
+        digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+  }
+}
+
+void descendreDepuisEtage2() {
+  if(digitalRead(ledDetecEt1)== HIGH){
+    if(digitalRead(ledEt2D) == HIGH){
+        digitalWrite(ledEt2D,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+  }else {
+    if (digitalRead(ledEt2D) == HIGH){
+        digitalWrite(ledEt2D,HIGH);
+        digitalWrite(ledMotD,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt2) == HIGH){
+        digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+  }
+}
+
 void loop(){
   if(digitalRead(ledUrgence) == HIGH){
     arret_urgence();
