@@ -17,6 +17,10 @@ int ledEt4D = 24;
 int boutonEt4M = 34;
 int boutonEt4D = 31;
 
+int bit0 = 5;
+int bit1 = 4;
+int bit2 = 3;
+
 void setup() {
   pinMode(ledUrgence, OUTPUT);
   pinMode(ledUrgence, INPUT);
@@ -36,6 +40,9 @@ void setup() {
   pinMode(ledDetecEt3,OUTPUT);
   pinMode(ledDetecEt4,OUTPUT);
   pinMode(ledDetecEt5,OUTPUT);
+  pinMode(bit0,OUTPUT);
+  pinMode(bit1,OUTPUT);
+  pinMode(bit2,OUTPUT);
 }
 
 void arret_urgence() {
@@ -148,6 +155,23 @@ void allerEtage5() {
     if(digitalRead(ledDetecEt5) == HIGH){
         digitalWrite(ledMotM,LOW);
     }
+}
+
+void afficheurEtage(int numeroEtage){
+  switch(numeroEtage){
+    case 1 : digitalWrite(bit0,HIGH);
+             break;
+    case 2 : digitalWrite(bit1,HIGH);
+             break;
+    case 3 : digitalWrite(bit0,HIGH);
+             digitalWrite(bit1,HIGH);
+             break;
+    case 4 : digitalWrite(bit2,HIGH);
+             break;
+    default : digitalWrite(bit2,HIGH);
+              digitalWrite(bit0,HIGH);
+              break;
+  }
 }
 
 void loop(){
