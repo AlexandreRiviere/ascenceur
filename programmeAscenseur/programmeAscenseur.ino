@@ -44,7 +44,7 @@ void arret_urgence() {
 }
 
 void monterDepuisEtage3() {
-  if (digitalRead(BPEtage3M) == HIGH) {
+  if (digitalRead(BPEtage3M) == HIGH && digitalRead(ledDetecEt3)== HIGH) {
     digitalWrite(ledBPEtage3M,HIGH);
     digitalWrite(ledMotM,HIGH);
   }
@@ -56,7 +56,7 @@ void monterDepuisEtage3() {
 }
 
 void descendreDepuisEtage3() {
-  if (digitalRead(BPEtage3D) == HIGH) {
+  if (digitalRead(BPEtage3D) == HIGH && digitalRead(ledDetecEt3)== HIGH) {
     digitalWrite(ledBPEtage3D,HIGH);
     digitalWrite(ledMotD,HIGH);
   }
