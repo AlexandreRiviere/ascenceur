@@ -44,25 +44,37 @@ void arret_urgence() {
 }
 
 void monterDepuisEtage3() {
-  if (digitalRead(BPEtage3M) == HIGH && digitalRead(ledDetecEt3)== HIGH) {
-    digitalWrite(ledBPEtage3M,HIGH);
-    digitalWrite(ledMotM,HIGH);
+  if (digitalRead(BPEtage3M) == HIGH) {
+    if (digitalRead(ledDetecEt1) == HIGH || digitalRead(ledDetecEt2) == HIGH) {
+      digitalWrite(ledBPEtage3M,HIGH);
+      digitalWrite(ledMotM,HIGH);
+    } else {
+      digitalWrite(ledBpEtage3M,HIGH);
+      digitalWrite(ledMotD,HIGH);
+    }
   }
 
-  if (digitalRead(ledDetecEt4) == HIGH) {
+  if (digitalRead(ledDetecEt3) == HIGH) {
     digitalWrite(ledBPEtage3M,LOW);
     digitalWrite(ledMotM,LOW);
+    digitalWrite(ledMotD,LOW);
   }
 }
 
 void descendreDepuisEtage3() {
-  if (digitalRead(BPEtage3D) == HIGH && digitalRead(ledDetecEt3)== HIGH) {
-    digitalWrite(ledBPEtage3D,HIGH);
-    digitalWrite(ledMotD,HIGH);
+  if (digitalRead(BPEtage3D) == HIGH) {
+    if (digitalRead(ledDetecEt4) == HIGH || digitalRead(ledDetecEt5) == HIGH) {
+      digitalWrite(ledBPEtage3D,HIGH);
+      digitalWrite(ledMotD,HIGH);
+    } else {
+      digitalWrite(ledBpEtage3D,HIGH);
+      digitalWrite(ledMotM,HIGH);
+    }
   }
 
-  if (digitalRead(ledDetecEt2) == HIGH) {
+  if (digitalRead(ledDetecEt3) == HIGH) {
     digitalWrite(ledBPEtage3D,LOW);
+    digitalWrite(ledMotM,LOW);
     digitalWrite(ledMotD,LOW);
   }
 }
