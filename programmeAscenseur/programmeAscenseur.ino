@@ -1,15 +1,15 @@
 int ledMotM = 14;
 int ledMotD = 15;
-int ledEt1 = 45;
-int ledDetecEt1 = 13;
-int ledEt2 = 44;
-int ledEt3 = 43;
-int ledEt4 = 42;
-int ledEt5 = 41;
-int ledDetecEt2 = 12;
-int ledDetecEt3 = 11;
-int ledDetecEt4 = 10;
-int ledDetecEt5 = 9;
+int ledEt1 = 48;
+int ledDetecEt1 = 53;
+int ledEt2 = 47;
+int ledEt3 = 38;
+int ledEt4 = 39;
+int ledEt5 = 40;
+int ledDetecEt2 = 52;
+int ledDetecEt3 = 51;
+int ledDetecEt4 = 50;
+int ledDetecEt5 = 49;
 int ledUrgence = 46;
 
 void setup() {
@@ -108,10 +108,12 @@ void allerEtage5() {
 }
 
 void loop(){
- if(digitalRead(ledUrgence) == HIGH){
+ if(digitalRead(ledUrgence) == LOW){
     arret_urgence();
   }else{
     descendreEtage1();
     allerEtage2();
+    allerEtage3();
+    allerEtage4();
   }
 }
