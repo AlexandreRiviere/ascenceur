@@ -106,6 +106,31 @@ void allerEtage5() {
         digitalWrite(ledMotM,LOW);
     }
 }
+void monterDepuisEtage1(){
+  if(digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
+    if (digitalRead(ledEt1M) == HIGH){
+        digitalWrite(ledEt1M,HIGH);
+        digitalWrite(ledMotD,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt4) == HIGH){
+        digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+  }
+}
+
+void descendreDepuisEtage5() {
+  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH){
+    if(digitalRead(ledEt1D) == HIGH){
+        digitalWrite(ledEt1D,HIGH);
+        digitalWrite(ledMotM,HIGH); 
+    }
+  }
+  if(digitalRead(ledDetecEt4) == HIGH){
+        digitalWrite(ledMotD,LOW);
+        digitalWrite(ledMotM,LOW);
+  }
+}
 
 void monterDepuisEtage2(){
   if(digitalRead(ledDetecEt1)== HIGH){
