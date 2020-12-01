@@ -259,7 +259,6 @@ void loop(){
     }if(digitalRead(ledEt4) == HIGH){
       allerEtage4();
     } if(digitalRead(ledEt3) == HIGH){
-      digitalWrite(ledEt3,HIGH);
       allerEtage3();
     } if(digitalRead(ledEt2) == HIGH){
       allerEtage2();
