@@ -5,6 +5,7 @@ int ledDetecEt1 = 13;
 int ledEt2 = 44;
 int ledEt3 = 43;
 int ledEt4 = 42;
+int ledEt5 = 41;
 int ledDetecEt2 = 12;
 int ledDetecEt3 = 11;
 int ledDetecEt4 = 10;
@@ -112,11 +113,5 @@ void loop(){
   }else{
     descendreEtage1();
     allerEtage2();
-  }
-  digitalWrite(ledDetecEt1,HIGH);
-  if(digitalRead(38) == HIGH){
-    digitalWrite(ledDetecEt2,HIGH);
-  }else {
-    digitalWrite(ledDetecEt2,LOW);
   }
 }
