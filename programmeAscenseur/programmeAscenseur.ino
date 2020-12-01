@@ -39,6 +39,11 @@ void setup() {
   pinMode(ledEt2M,OUTPUT);
   pinMode(ledEt2D,OUTPUT);  
   pinMode(ledEt5D,OUTPUT);
+  pinMode(ledDetecEt1,OUTPUT);
+  pinMode(ledDetecEt2,OUTPUT);
+  pinMode(ledDetecEt3,OUTPUT);
+  pinMode(ledDetecEt4,OUTPUT);
+  pinMode(ledDetecEt5,OUTPUT);
   pinMode(ledDetecEt1,INPUT);
   pinMode(ledDetecEt2,INPUT);
   pinMode(ledDetecEt3,INPUT);
@@ -61,6 +66,7 @@ void descendreEtage1() {
   }
   if(digitalRead(ledDetecEt1) == HIGH){
       digitalWrite(ledMotD,LOW);
+      digitalWrite(ledEt1,LOW);
   }
 }
 
@@ -243,9 +249,8 @@ void loop(){
  if(digitalRead(ledUrgence) == LOW){
     arret_urgence();
   }else{
-    descendreEtage1();
-    allerEtage2();
-    allerEtage3();
-    allerEtage4();
+   descendreEtage1();
+   allerEtage5();
   }
+   
 }
