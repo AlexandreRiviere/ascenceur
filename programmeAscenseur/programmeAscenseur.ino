@@ -44,12 +44,19 @@ int BPEtage3D = 32;
 int BPEtage4D = 31;
 int BPEtage5D = 30;
 
+int porteEt1 = 45;
+int porteEt2 = 44;
+int porteEt3 = 43;
+int porteEt4 = 42;
+int porteEt5 = 41;
+
 void setup() {
   pinMode(ledUrgence, OUTPUT);
   pinMode(ledUrgence, INPUT);
   
   pinMode(MotM, OUTPUT);
   pinMode(MotD,OUTPUT);
+  pinMode(MotM, INPUT);
   
   pinMode(etage1,INPUT);
   pinMode(etage1,OUTPUT);
@@ -102,6 +109,12 @@ void setup() {
   pinMode(BPEtage3D,INPUT);
   pinMode(BPEtage4D,INPUT);
   pinMode(BPEtage5D,INPUT);
+
+  pinMode(porteEt1,INPUT);
+  pinMode(porteEt2,INPUT);
+  pinMode(porteEt3,INPUT);
+  pinMode(porteEt4,INPUT);
+  pinMode(porteEt5,INPUT);
 }
 
 void arret_urgence() {
@@ -120,6 +133,11 @@ void arret_urgence() {
     digitalWrite(etage3,LOW);
     digitalWrite(etage4,LOW);
     digitalWrite(etage5,LOW);
+    digitalWrite(cab1,LOW);
+    digitalWrite(cab2,LOW);
+    digitalWrite(cab3,LOW);
+    digitalWrite(cab4,LOW);
+    digitalWrite(cab5,LOW);
 }
 
 void allerEtage1() {
@@ -375,13 +393,29 @@ void initialisation(){
    }while (digitalRead(ledDetecEt5) != HIGH && digitalRead(ledDetecEt4) != HIGH && digitalRead(ledDetecEt3) != HIGH && digitalRead(ledDetecEt2) != HIGH && digitalRead(ledDetecEt1) != HIGH);
    digitalWrite(MotD,LOW);
 }
-void loop(){
-  if(digitalRead(ledDetecEt5) != HIGH && digitalRead(ledDetecEt4) != HIGH && digitalRead(ledDetecEt3) != HIGH && digitalRead(ledDetecEt2) != HIGH && digitalRead(ledDetecEt1) != HIGH){
-    initialisation();
+
+void porte(){
+  if (digitalRead(MotM) == HIGH){
+    while(digitalRead(porteEt5) != HIGH || digitalRead(porteEt4) != HIGH || digitalRead(porteEt3) != HIGH || digitalRead(porteEt2) != HIGH || digitalRead(porteEt1) != HIGH){
+      digitalWrite(MotM,LOW);
+    }
+    digitalWrite(MotM,HIGH);
+  }else{
+     while(digitalRead(porteEt5) != HIGH || digitalRead(porteEt4) != HIGH || digitalRead(porteEt3) != HIGH || digitalRead(porteEt2) != HIGH || digitalRead(porteEt1) != HIGH){
+      digitalWrite(MotD,LOW);
+    }
+    digitalWrite(MotD,LOW);
   }
-  
+}
+
+void loop(){
+  if(digitalRead(porteEt5) != HIGH || digitalRead(porteEt4) != HIGH || digitalRead(porteEt3) != HIGH || digitalRead(porteEt2) != HIGH || digitalRead(porteEt1) != HIGH){
+    porte();
+  }
+    
   if(digitalRead(ledUrgence) == LOW){
     arret_urgence();
+    initialisation();
   }else{
     if(digitalRead(cab1) == HIGH || digitalRead(etage1)== HIGH){
       allerEtage1();
