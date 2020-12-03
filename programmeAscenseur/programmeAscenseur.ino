@@ -333,14 +333,14 @@ void descendreDepuisEtage4() {
 
 void descendreDepuisEtage5() {
   if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH){
-    if(digitalRead(ledEt5D) == HIGH){
+    if (digitalRead(BPEtage5D) == HIGH){
         digitalWrite(ledEt5D,HIGH);
         digitalWrite(MotM,HIGH); 
     }
   }
   if(digitalRead(ledDetecEt5) == HIGH){
-        digitalWrite(MotD,LOW);
         digitalWrite(MotM,LOW);
+        digitalWrite(ledEt5D,LOW);
   }
 }
 
@@ -371,17 +371,16 @@ void afficheurEtage(int numeroEtage){
 
 void initialisation(){
    do{
-     digitalWrite(MotD,HIGH);
+      digitalWrite(MotD,HIGH);
    }while (digitalRead(ledDetecEt5) != HIGH && digitalRead(ledDetecEt4) != HIGH && digitalRead(ledDetecEt3) != HIGH && digitalRead(ledDetecEt2) != HIGH && digitalRead(ledDetecEt1) != HIGH);
-   digitalWrite(MotD,LOW);
+      digitalWrite(MotD,LOW);
 }
 void loop(){
-  if(digitalRead(ledDetecEt5) != HIGH && digitalRead(ledDetecEt4) != HIGH && digitalRead(ledDetecEt3) != HIGH && digitalRead(ledDetecEt2) != HIGH && digitalRead(ledDetecEt1) != HIGH){
-    initialisation();
-  }
+
   
   if(digitalRead(ledUrgence) == LOW){
     arret_urgence();
+    initialisation();
   }else{
     if(digitalRead(cab1) == HIGH || digitalRead(etage1)== HIGH){
       allerEtage1();
