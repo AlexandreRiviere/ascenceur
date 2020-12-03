@@ -5,6 +5,7 @@ int ledDetecEt1 = 13;
 int ledEt2 = 44;
 int ledEt3 = 43;
 int ledEt4 = 42;
+<<<<<<< HEAD
 int ledEt5 = 41;
 int ledDetecEt2 =12;
 int ledDetecEt3 =11;
@@ -20,6 +21,13 @@ int bit1 = 4;
 int bit2 = 3;
 int ledUrgence = 46;
 
+=======
+int ledDetecEt2 = 12;
+int ledDetecEt3 = 11;
+int ledDetecEt4 = 10;
+int ledDetecEt5 = 9;
+int ledUrgence = 46;
+>>>>>>> master
 
 void setup() {
   pinMode(ledUrgence, OUTPUT);
