@@ -1,7 +1,7 @@
 int ledMotM = 14;
 int ledMotD = 15;
 int ledEt1 = 45;
-int ledDetecEt1 =13;
+int ledDetecEt1 = 13;
 int ledEt2 = 44;
 int ledEt3 = 43;
 int ledEt4 = 42;
@@ -11,15 +11,15 @@ int ledDetecEt3 =11;
 int ledDetecEt4 =10;
 int ledDetecEt5 =9;
 int ledUrgence = 46;
-
 int ledEt4M = 26;
 int ledEt4D = 24;
 int boutonEt4M = 34;
 int boutonEt4D = 31;
-
 int bit0 = 5;
 int bit1 = 4;
 int bit2 = 3;
+int ledUrgence = 46;
+
 
 void setup() {
   pinMode(ledUrgence, OUTPUT);
