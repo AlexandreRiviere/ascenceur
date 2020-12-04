@@ -51,22 +51,15 @@ int porteEt4 = 42;
 int porteEt5 = 41;
 
 void setup() {
-  pinMode(ledUrgence, OUTPUT);
   pinMode(ledUrgence, INPUT);
   
-  pinMode(MotM, OUTPUT);
+  pinMode(MotM,OUTPUT);
   pinMode(MotD,OUTPUT);
-  pinMode(MotM, INPUT);
   
-  pinMode(etage1,INPUT);
   pinMode(etage1,OUTPUT);
-  pinMode(etage2,INPUT);
   pinMode(etage2,OUTPUT);
-  pinMode(etage3,INPUT);
   pinMode(etage3,OUTPUT);
-  pinMode(etage4,INPUT);
   pinMode(etage4,OUTPUT);
-  pinMode(etage5,INPUT);
   pinMode(etage5,OUTPUT);
   
   pinMode(cab1,INPUT);
@@ -85,11 +78,6 @@ void setup() {
   pinMode(ledEt4D,OUTPUT);
   pinMode(ledEt5D,OUTPUT);
   
-  pinMode(ledDetecEt1,OUTPUT);
-  pinMode(ledDetecEt2,OUTPUT);
-  pinMode(ledDetecEt3,OUTPUT);
-  pinMode(ledDetecEt4,OUTPUT);
-  pinMode(ledDetecEt5,OUTPUT);
   pinMode(ledDetecEt1,INPUT);
   pinMode(ledDetecEt2,INPUT);
   pinMode(ledDetecEt3,INPUT);
@@ -109,8 +97,6 @@ void setup() {
   pinMode(BPEtage3D,INPUT);
   pinMode(BPEtage4D,INPUT);
   pinMode(BPEtage5D,INPUT);
-
-
 }
 
 void arret_urgence() {
@@ -129,17 +115,11 @@ void arret_urgence() {
     digitalWrite(etage3,LOW);
     digitalWrite(etage4,LOW);
     digitalWrite(etage5,LOW);
-    digitalWrite(etage1,LOW);
-    digitalWrite(etage2,LOW);
-    digitalWrite(etage3,LOW);
-    digitalWrite(etage4,LOW);
-    digitalWrite(etage5,LOW);
 }
 
 void allerEtage1() {
  
-  if(digitalRead(cab1) == HIGH){
-      digitalWrite(etage1,HIGH);
+  if(digitalRead(etage1) == HIGH){
       digitalWrite(MotD,HIGH);
   }
   if(digitalRead(ledDetecEt1) == HIGH){
@@ -150,13 +130,11 @@ void allerEtage1() {
 
 void allerEtage2() {
   if(digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
-    if(digitalRead(cab2) == HIGH){
-        digitalWrite(etage2,HIGH);
+    if(digitalRead(etage2) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
   }else {
-    if(digitalRead(cab2) == HIGH){
-        digitalWrite(etage2,HIGH);
+    if(digitalRead(etage2) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }
@@ -169,13 +147,11 @@ void allerEtage2() {
 
 void allerEtage3() {
   if(digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
-    if(digitalRead(cab3) == HIGH){
-        digitalWrite(etage3,HIGH);
+    if(digitalRead(etage3) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
   }else{
-    if(digitalRead(cab3) == HIGH){
-        digitalWrite(etage3,HIGH);
+    if(digitalRead(etage3) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }
@@ -188,13 +164,11 @@ void allerEtage3() {
 
 void allerEtage4() {
   if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
-    if(digitalRead(cab4) == HIGH){
-        digitalWrite(etage4,HIGH);
+    if(digitalRead(etage4) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }else {
-    if(digitalRead(cab4) == HIGH){
-        digitalWrite(etage4,HIGH);
+    if(digitalRead(etage4) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
   }
@@ -206,8 +180,7 @@ void allerEtage4() {
 }
 
 void allerEtage5() {
-    if(digitalRead(cab5) == HIGH){
-        digitalWrite(etage5,HIGH);
+    if(digitalRead(etage5) == HIGH){
         digitalWrite(MotM,HIGH);
     }
     if(digitalRead(ledDetecEt5) == HIGH){
@@ -218,8 +191,7 @@ void allerEtage5() {
 
 void monterDepuisEtage1(){
   if(digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
-    if (digitalRead(BPEtage1M) == HIGH){
-        digitalWrite(ledEt1M,HIGH);
+    if (digitalRead(ledEt1M) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
   }
@@ -231,13 +203,11 @@ void monterDepuisEtage1(){
 
 void monterDepuisEtage2(){
   if(digitalRead(ledDetecEt1)== HIGH){
-    if (digitalRead(BPEtage2M) == HIGH){
-        digitalWrite(ledEt2M,HIGH);
+    if (digitalRead(ledEt2M) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }else {
-    if(digitalRead(BPEtage2M) == HIGH){
-        digitalWrite(ledEt2M,HIGH);
+    if(digitalRead(ledEt2M) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
   }
@@ -249,13 +219,11 @@ void monterDepuisEtage2(){
 }
 
 void monterDepuisEtage3() {
-  if (digitalRead(BPEtage3M) == HIGH) {
+  if (digitalRead(ledEt3M) == HIGH) {
     if (digitalRead(ledDetecEt1) == HIGH || digitalRead(ledDetecEt2) == HIGH) {
-      digitalWrite(ledEt3M,HIGH);
       digitalWrite(MotM,HIGH);
     } else {
-      if(digitalRead(BPEtage3M) == HIGH){
-        digitalWrite(ledEt3M,HIGH);
+      if(digitalRead(ledEt3M) == HIGH){
         digitalWrite(MotD,HIGH);
       }
     }
@@ -270,17 +238,15 @@ void monterDepuisEtage3() {
 
 void monterDepuisEtage4(){
   if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
-    if (digitalRead(BPEtage4M) == HIGH){
-        digitalWrite(ledEt4M,HIGH);
+    if (digitalRead(ledEt4M) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }else {
-    if (digitalRead(BPEtage4M) == HIGH){
-      digitalWrite(ledEt4M,HIGH);
+    if ( digitalRead(ledEt4M) == HIGH){
       digitalWrite(MotD,HIGH);
     } 
   }
-  if(digitalRead(ledDetecEt4) == HIGH){
+  if(digitalRead(ledDetecEt4) == HIGH ){
         digitalWrite(MotD,LOW);
         digitalWrite(MotM,LOW);
         digitalWrite(ledEt4M,LOW);
@@ -289,13 +255,11 @@ void monterDepuisEtage4(){
 
 void descendreDepuisEtage2() {
   if(digitalRead(ledDetecEt1)== HIGH){
-    if(digitalRead(BPEtage2D) == HIGH){
-        digitalWrite(ledEt2D,HIGH);
+    if(digitalRead(ledEt2D) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }else {
-    if (digitalRead(BPEtage2D) == HIGH){
-        digitalWrite(ledEt2D,HIGH);
+    if (digitalRead(ledEt2D) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
   }
@@ -307,13 +271,11 @@ void descendreDepuisEtage2() {
 }
 
 void descendreDepuisEtage3() {
-  if (digitalRead(BPEtage3D) == HIGH) {
+  if (digitalRead(ledEt3D) == HIGH) {
     if (digitalRead(ledDetecEt4) == HIGH || digitalRead(ledDetecEt5) == HIGH) {
-      digitalWrite(ledEt3D,HIGH);
       digitalWrite(MotD,HIGH);
     } else {
-      if(digitalRead(BPEtage3D) == HIGH ){
-       digitalWrite(ledEt3D,HIGH);
+      if(digitalRead(ledEt3D) == HIGH){
        digitalWrite(MotM,HIGH); 
       }
     }
@@ -328,13 +290,11 @@ void descendreDepuisEtage3() {
 
 void descendreDepuisEtage4() {
   if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
-    if(digitalRead(BPEtage4D) == HIGH){
-        digitalWrite(ledEt4D,HIGH);
+    if(digitalRead(ledEt4D) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }else {
-    if (digitalRead(BPEtage4D) == HIGH){
-        digitalWrite(ledEt4D,HIGH);
+    if (digitalRead(ledEt4D) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
   }
@@ -347,13 +307,11 @@ void descendreDepuisEtage4() {
 
 void descendreDepuisEtage5() {
   if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH){
-    if (digitalRead(BPEtage5D) == HIGH){
-        digitalWrite(ledEt5D,HIGH);
+    if (digitalRead(ledEt5D) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }
   if(digitalRead(ledDetecEt5) == HIGH){
-        digitalWrite(MotD,LOW);
         digitalWrite(MotM,LOW);
         digitalWrite(ledEt5D,LOW);
   }
@@ -391,51 +349,60 @@ void initialisation(){
       digitalWrite(MotD,LOW);
 }
 
-
+void porte(){
+    if(digitalRead(porteEt5) != HIGH || digitalRead(porteEt4) != HIGH || digitalRead(porteEt3) != HIGH || digitalRead(porteEt2) != HIGH || digitalRead(porteEt1) != HIGH){
+      digitalWrite(MotM,LOW);
+      digitalWrite(MotD,LOW);
+    }  
+}
 
 void loop(){
- 
   if(digitalRead(ledUrgence) == LOW){
     arret_urgence();
     initialisation();
-  }else{
-    if(digitalRead(cab1) == HIGH || digitalRead(etage1)== HIGH){
+  }else if(digitalRead(porteEt5) != HIGH || digitalRead(porteEt4) != HIGH || digitalRead(porteEt3) != HIGH || digitalRead(porteEt2) != HIGH || digitalRead(porteEt1) != HIGH){
+    porte();
+  }else {
+    if(digitalRead(etage1)== HIGH){
       allerEtage1();
     }
-    if(digitalRead(cab2) == HIGH || digitalRead(etage2)== HIGH){
+    if(digitalRead(etage2)== HIGH){
       allerEtage2();
     }
-    if(digitalRead(cab3) == HIGH || digitalRead(etage3)== HIGH){
+    if(digitalRead(etage3)== HIGH){
       allerEtage3();
     }
-    if(digitalRead(cab4) == HIGH || digitalRead(etage4)== HIGH){
+    if(digitalRead(etage4)== HIGH){
       allerEtage4();
     }
-    if(digitalRead(cab5) == HIGH || digitalRead(etage5)== HIGH){
+    if(digitalRead(etage5)== HIGH){
       allerEtage5();
     }
-    if(digitalRead(ledEt1M)== HIGH || digitalRead(BPEtage1M) == HIGH){
+    if(digitalRead(ledEt1M)== HIGH || digitalRead(ledEt2M)== HIGH || digitalRead(ledEt3M)== HIGH || digitalRead(ledEt4M)== HIGH || digitalRead(MotM) != HIGH && digitalRead(ledDetecEt1) == HIGH){
+    if(digitalRead(ledEt1M)== HIGH){
       monterDepuisEtage1();
     }
-    if(digitalRead(ledEt2M)== HIGH || digitalRead(BPEtage2M) == HIGH){
+    if(digitalRead(ledEt2M)== HIGH){
       monterDepuisEtage2();
     }
-    if(digitalRead(ledEt3M)== HIGH || digitalRead(BPEtage3M) == HIGH){
+    if(digitalRead(ledEt3M)== HIGH ){
       monterDepuisEtage3();
     }
-    if(digitalRead(ledEt4M)== HIGH || digitalRead(BPEtage4M) == HIGH){
+    if(digitalRead(ledEt4M)== HIGH){
       monterDepuisEtage4();
     }
-    if(digitalRead(ledEt2D)== HIGH || digitalRead(BPEtage2D) == HIGH){
+    }
+    if(digitalRead(ledEt2D)== HIGH || digitalRead(ledEt3D)== HIGH || digitalRead(ledEt4D)== HIGH || digitalRead(ledEt5D)== HIGH || digitalRead(MotD) != HIGH && digitalRead(ledDetecEt5) == HIGH){
+    if(digitalRead(ledEt2D)== HIGH){
       descendreDepuisEtage2();
     }
-    if(digitalRead(ledEt3D)== HIGH || digitalRead(BPEtage3D) == HIGH){
+    if(digitalRead(ledEt3D)== HIGH){
       descendreDepuisEtage3();
     }
-    if(digitalRead(ledEt4D)== HIGH || digitalRead(BPEtage4D) == HIGH){
+    if(digitalRead(ledEt4D)== HIGH){
       descendreDepuisEtage4();
     }
-    if(digitalRead(ledEt5D)== HIGH || digitalRead(BPEtage5D) == HIGH){
+    if(digitalRead(ledEt5D)== HIGH){
       descendreDepuisEtage5();
     }
   }
@@ -449,5 +416,45 @@ void loop(){
     afficheurEtage(2);
   }else if(digitalRead(ledDetecEt1) == HIGH) {
     afficheurEtage(1);
+  }
+  if(digitalRead(cab1) == HIGH){
+    digitalWrite(etage1,HIGH);
+  }
+  if(digitalRead(cab2) == HIGH){
+    digitalWrite(etage2,HIGH);
+  }
+  if(digitalRead(cab3) == HIGH){
+    digitalWrite(etage3,HIGH);
+  }
+  if(digitalRead(cab4) == HIGH){
+    digitalWrite(etage4,HIGH);
+  }
+  if(digitalRead(cab5) == HIGH){
+    digitalWrite(etage5,HIGH);
+  }
+  if(digitalRead(BPEtage1M) == HIGH){
+    digitalWrite(ledEt1M,HIGH);
+  }
+  if(digitalRead(BPEtage2M) == HIGH){
+    digitalWrite(ledEt2M,HIGH);
+  }
+  if(digitalRead(BPEtage3M) == HIGH){
+    digitalWrite(ledEt3M,HIGH);
+  }
+  if(digitalRead(BPEtage4M) == HIGH){
+    digitalWrite(ledEt4M,HIGH);
+  }
+  if(digitalRead(BPEtage2D) == HIGH){
+    digitalWrite(ledEt2D,HIGH);
+  }
+  if(digitalRead(BPEtage3D) == HIGH){
+    digitalWrite(ledEt3D,HIGH);
+  }
+  if(digitalRead(BPEtage4D) == HIGH){
+    digitalWrite(ledEt4D,HIGH);
+  }
+  if(digitalRead(BPEtage5D) == HIGH){
+    digitalWrite(ledEt5D,HIGH);
+  }
   }
 }
