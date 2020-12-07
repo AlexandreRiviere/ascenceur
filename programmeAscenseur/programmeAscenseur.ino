@@ -378,11 +378,11 @@ void loop(){
     if(digitalRead(etage5)== HIGH){
       allerEtage5();
     }
-    if(digitalRead(ledEt1M)== HIGH || digitalRead(ledEt2M)== HIGH || digitalRead(ledEt3M)== HIGH || digitalRead(ledEt4M)== HIGH || digitalRead(MotM) != HIGH && digitalRead(ledDetecEt1) == HIGH){
+  
     if(digitalRead(ledEt1M)== HIGH){
       monterDepuisEtage1();
     }
-    if(digitalRead(ledEt2M)== HIGH){
+    if(!(digitalRead(MotD) == HIGH && (digitalRead(etage1) == HIGH) && digitalRead(ledEt2M)== HIGH){
       monterDepuisEtage2();
     }
     if(digitalRead(ledEt3M)== HIGH ){
@@ -391,8 +391,7 @@ void loop(){
     if(digitalRead(ledEt4M)== HIGH){
       monterDepuisEtage4();
     }
-    }
-    if(digitalRead(ledEt2D)== HIGH || digitalRead(ledEt3D)== HIGH || digitalRead(ledEt4D)== HIGH || digitalRead(ledEt5D)== HIGH || digitalRead(MotD) != HIGH && digitalRead(ledDetecEt5) == HIGH){
+    
     if(digitalRead(ledEt2D)== HIGH){
       descendreDepuisEtage2();
     }
@@ -455,6 +454,5 @@ void loop(){
   }
   if(digitalRead(BPEtage5D) == HIGH){
     digitalWrite(ledEt5D,HIGH);
-  }
   }
 }
