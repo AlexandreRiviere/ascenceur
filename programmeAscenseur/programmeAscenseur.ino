@@ -21,9 +21,12 @@ int ledEt5D = 25;
 int bit0 = 5;
 int bit1 = 4;
 int bit2 = 3;
+int ledBPEtage3M = 27;
 int ledBPEtage3D = 23;
 int BPEtage3M = 35;
 int BPEtage3D = 32;
+
+boolean isArretUrgence = false;
 
 void setup() {
   pinMode(ledUrgence, OUTPUT);
@@ -66,9 +69,10 @@ void setup() {
   pinMode(BPEtage3D,INPUT);
 }
 
-void arret_urgence() {
+boolean arret_urgence() {
     digitalWrite(ledMotM,LOW);
     digitalWrite(ledMotD,LOW);
+    return true;
 }
 
 void monterDepuisEtage3() {
@@ -77,7 +81,7 @@ void monterDepuisEtage3() {
       digitalWrite(ledBPEtage3M,HIGH);
       digitalWrite(ledMotM,HIGH);
     } else {
-      digitalWrite(ledBpEtage3M,HIGH);
+      digitalWrite(ledBPEtage3M,HIGH);
       digitalWrite(ledMotD,HIGH);
     }
   }
@@ -95,7 +99,7 @@ void descendreDepuisEtage3() {
       digitalWrite(ledBPEtage3D,HIGH);
       digitalWrite(ledMotD,HIGH);
     } else {
-      digitalWrite(ledBpEtage3D,HIGH);
+      digitalWrite(ledBPEtage3D,HIGH);
       digitalWrite(ledMotM,HIGH);
     }
   }
@@ -279,24 +283,39 @@ void descendreDepuisEtage2() {
 void afficheurEtage(int numeroEtage){
   switch(numeroEtage){
     case 1 : digitalWrite(bit0,HIGH);
+             digitalWrite(bit1,LOW);
+             digitalWrite(bit2,LOW);
              break;
     case 2 : digitalWrite(bit1,HIGH);
+             digitalWrite(bit0,LOW);
+             digitalWrite(bit2,LOW);
              break;
     case 3 : digitalWrite(bit0,HIGH);
              digitalWrite(bit1,HIGH);
+             digitalWrite(bit2,LOW);
              break;
     case 4 : digitalWrite(bit2,HIGH);
+             digitalWrite(bit1,LOW);
+             digitalWrite(bit0,LOW);
              break;
     default : digitalWrite(bit2,HIGH);
               digitalWrite(bit0,HIGH);
+              digitalWrite(bit1,LOW);
               break;
   }
 }
 
 void loop(){
  if(digitalRead(ledUrgence) == LOW){
-    arret_urgence();
+    isArretUrgence = arret_urgence();
   }else{
+    if(digitalRead(ledUrgence) == HIGH && isArretUrgence){
+      while(digitalRead(ledDetecEt5) != HIGH || digitalRead(ledDetecEt4) != HIGH || digitalRead(ledDetecEt3) != HIGH || digitalRead(ledDetecEt2) != HIGH || digitalRead(ledDetecEt1) != HIGH){
+        digitalWrite(ledMotD,HIGH);
+      }
+      digitalWrite(ledMotD,LOW);
+      isArretUrgence = false;
+    }
     if(digitalRead(ledEt5) == HIGH){
       allerEtage5();
     }if(digitalRead(ledEt4) == HIGH){
@@ -308,6 +327,19 @@ void loop(){
     } if(digitalRead(ledEt1) == HIGH){
       descendreEtage1();
     }
+
+    if(digitalRead(ledDetecEt5) == HIGH){
+      afficheurEtage(5);
+    }else if(digitalRead(ledDetecEt4) == HIGH) {
+      afficheurEtage(4);
+    }else if(digitalRead(ledDetecEt3) == HIGH) {
+      afficheurEtage(3);
+    }else if(digitalRead(ledDetecEt2) == HIGH) {
+      afficheurEtage(2);
+    }else if(digitalRead(ledDetecEt1) == HIGH) {
+      afficheurEtage(1);
+    }
+    
 
   }
    
