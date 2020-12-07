@@ -405,6 +405,7 @@ void loop(){
     if(digitalRead(ledEt5D)== HIGH){
       descendreDepuisEtage5();
     }
+    }
   }
   if(digitalRead(ledDetecEt5) == HIGH){
     afficheurEtage(5);
@@ -455,6 +456,5 @@ void loop(){
   }
   if(digitalRead(BPEtage5D) == HIGH){
     digitalWrite(ledEt5D,HIGH);
-  }
   }
 }
