@@ -58,11 +58,11 @@ int porteEt3 = 43;
 int porteEt4 = 42;
 int porteEt5 = 41;
 
-boolean cabineEstAEtage1;
-boolean cabineEstAEtage2;
-boolean cabineEstAEtage3;
-boolean cabineEstAEtage4;
-boolean cabineEstAEtage5;
+bool cabineEstAEtage1;
+bool cabineEstAEtage2;
+bool cabineEstAEtage3;
+bool cabineEstAEtage4;
+bool cabineEstAEtage5;
 
 /* 
  *  Initialisation des différents pins,
