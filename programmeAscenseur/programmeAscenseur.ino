@@ -384,22 +384,6 @@ void loop(){
       monterDepuisEtage1();
     }
     if(!(digitalRead(MotD) == HIGH && (digitalRead(etage1) == HIGH) && digitalRead(ledEt2M)== HIGH)){
-  
-    if(digitalRead(ledEt1M)== HIGH){
-      monterDepuisEtage1();
-    }
-    if(!(digitalRead(MotD) == HIGH && (digitalRead(etage1) == HIGH) && digitalRead(ledEt2M)== HIGH)){
-
-      monterDepuisEtage2();
-    }
-    if(!(digitalRead(MotD) == HIGH && (digitalRead(etage1) == HIGH || digitalRead(etage2) == HIGH) && digitalRead(ledEt3M)== HIGH)){
-      monterDepuisEtage3();
-    }
-    if(!(digitalRead(MotD) == HIGH && (digitalRead(etage1) == HIGH || digitalRead(etage2) == HIGH || digitalRead(etage3) == HIGH) && digitalRead(ledEt4M)== HIGH)){
-      monterDepuisEtage4();
-    }
-
-   
     if(digitalRead(ledEt2D)== HIGH){
       descendreDepuisEtage2();
     }
