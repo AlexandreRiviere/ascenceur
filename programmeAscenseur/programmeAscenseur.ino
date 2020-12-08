@@ -1,18 +1,22 @@
+/* Pin des moteurs */
 int MotM = 14;
 int MotD = 15;
 
+/* Pin des LED des boutons de la cabine */
 int etage1 = 13;
 int etage2 = 12;
 int etage3 = 11;
 int etage4 = 10;
 int etage5 = 9;
 
+/* Pin des boutons de la cabine */
 int cab1 = 48;
 int cab2 = 47;
 int cab3 = 38;
 int cab4 = 39;
 int cab5 = 40;
 
+/* Pin des detecteurs de cabine aux étages 1 à 5 */
 int ledDetecEt1 = 53;
 int ledDetecEt2 = 52;
 int ledDetecEt3 = 51;
@@ -20,6 +24,7 @@ int ledDetecEt4 = 50;
 int ledDetecEt5 = 49;
 int ledUrgence = 46;
 
+/* Pin des LED des boutons Poussoirs */
 int ledEt1M = 29;
 int ledEt2M = 28;
 int ledEt3M = 27;
@@ -30,10 +35,12 @@ int ledEt3D = 23;
 int ledEt4D = 24;
 int ledEt5D = 25;
 
+/* Pin des bits pour l'affichage 7 segments */
 int bit0 = 5;
 int bit1 = 4;
 int bit2 = 3;
 
+/* Pin des boutons poussoirs */
 int BPEtage1M = 37;
 int BPEtage2M = 36;
 int BPEtage3M = 35;
@@ -44,12 +51,24 @@ int BPEtage3D = 32;
 int BPEtage4D = 31;
 int BPEtage5D = 30;
 
+/* Pin des détecteurs des portes */
 int porteEt1 = 45;
 int porteEt2 = 44;
 int porteEt3 = 43;
 int porteEt4 = 42;
 int porteEt5 = 41;
 
+bool cabineEstAEtage1;
+bool cabineEstAEtage2;
+bool cabineEstAEtage3;
+bool cabineEstAEtage4;
+bool cabineEstAEtage5;
+
+/* 
+ *  Initialisation des différents pins,
+ *  Si c'est un bouton, il sera initialisé en INPUT
+ *  Si c'est un cpateur il sera initialisé en OUTPUT
+ */
 void setup() {
   pinMode(ledUrgence, INPUT);
   
@@ -96,9 +115,11 @@ void setup() {
   pinMode(BPEtage2D,INPUT);
   pinMode(BPEtage3D,INPUT);
   pinMode(BPEtage4D,INPUT);
-  pinMode(BPEtage5D,INPUT);
 }
-
+/*
+ * Méthode arrêt d'urgence qui coupe tout.
+ * Elle arrête les moteurs et annule le parcours prévu
+ */
 void arret_urgence() {
     digitalWrite(MotM,LOW);
     digitalWrite(MotD,LOW);
@@ -117,6 +138,9 @@ void arret_urgence() {
     digitalWrite(etage5,LOW);
 }
 
+/*
+ * Pemet d'aller à l'étage 1 lorsqu'on appuie sur le bouton 1 dans la cabine
+ */
 void allerEtage1() {
  
   if(digitalRead(etage1) == HIGH){
@@ -128,8 +152,11 @@ void allerEtage1() {
   }
 }
 
+/*
+ * Pemet d'aller à l'étage 2 lorsqu'on appuie sur le bouton 2 dans la cabine
+ */
 void allerEtage2() {
-  if(digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
+  if(cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){
     if(digitalRead(etage2) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
@@ -145,8 +172,11 @@ void allerEtage2() {
     }
 }
 
+/*
+ * Pemet d'aller à l'étage 3 lorsqu'on appuie sur le bouton 3 dans la cabine
+ */
 void allerEtage3() {
-  if(digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
+  if(cabineEstAEtage4 || cabineEstAEtage5){
     if(digitalRead(etage3) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
@@ -162,8 +192,11 @@ void allerEtage3() {
   }
 }
 
+/*
+ * Pemet d'aller à l'étage 4 lorsqu'on appuie sur le bouton 4 dans la cabine
+ */
 void allerEtage4() {
-  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
+  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3){
     if(digitalRead(etage4) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
@@ -189,8 +222,24 @@ void allerEtage5() {
     }
 }
 
+/*
+ * Pemet d'aller à l'étage 5 lorsqu'on appuie sur le bouton 5 dans la cabine
+ */
+void allerEtage5() {
+    if(digitalRead(etage5) == HIGH){
+        digitalWrite(MotM,HIGH);
+    }
+    if(digitalRead(ledDetecEt5) == HIGH){
+        digitalWrite(MotM,LOW);
+        digitalWrite(etage5,LOW);
+    }
+}
+
+/*
+ * Appelle l'ascenseur à l'étage 1. En indiquant que l'on souhaite monter (pour les priotités)
+ */
 void monterDepuisEtage1(){
-  if(digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH || digitalRead(ledDetecEt5)== HIGH){
+  if(cabineEstAEtage2 || cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){
     if (digitalRead(ledEt1M) == HIGH){
         digitalWrite(MotD,HIGH); 
     }
@@ -201,8 +250,11 @@ void monterDepuisEtage1(){
   }
 }
 
+/*
+ * Appelle l'ascenseur à l'étage 2. En indiquant que l'on souhaite monter (pour les priotités)
+ */
 void monterDepuisEtage2(){
-  if(digitalRead(ledDetecEt1)== HIGH){
+  if(cabineEstAEtage1){
     if (digitalRead(ledEt2M) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
@@ -218,9 +270,12 @@ void monterDepuisEtage2(){
   }
 }
 
+/*
+ * Appelle l'ascenseur à l'étage 3. En indiquant que l'on souhaite monter (pour les priotités)
+ */
 void monterDepuisEtage3() {
   if (digitalRead(ledEt3M) == HIGH) {
-    if (digitalRead(ledDetecEt1) == HIGH || digitalRead(ledDetecEt2) == HIGH) {
+    if (cabineEstAEtage1 || cabineEstAEtage2) {
       digitalWrite(MotM,HIGH);
     } else {
       if(digitalRead(ledEt3M) == HIGH){
@@ -236,8 +291,11 @@ void monterDepuisEtage3() {
   }
 }
 
+/*
+ * Appelle l'ascenseur à l'étage 4. En indiquant que l'on souhaite monter (pour les priotités)
+ */
 void monterDepuisEtage4(){
-  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
+  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3){
     if (digitalRead(ledEt4M) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
@@ -253,8 +311,11 @@ void monterDepuisEtage4(){
   }
 }
 
+/*
+ * Appelle l'ascenseur à l'étage 2. En indiquant que l'on souhaite descendre (pour les priotités)
+ */
 void descendreDepuisEtage2() {
-  if(digitalRead(ledDetecEt1)== HIGH){
+  if(cabineEstAEtage1){
     if(digitalRead(ledEt2D) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
@@ -270,9 +331,12 @@ void descendreDepuisEtage2() {
   }
 }
 
+/*
+ * Appelle l'ascenseur à l'étage 3. En indiquant que l'on souhaite descendre (pour les priotités)
+ */
 void descendreDepuisEtage3() {
   if (digitalRead(ledEt3D) == HIGH) {
-    if (digitalRead(ledDetecEt4) == HIGH || digitalRead(ledDetecEt5) == HIGH) {
+    if (cabineEstAEtage4 || cabineEstAEtage5) {
       digitalWrite(MotD,HIGH);
     } else {
       if(digitalRead(ledEt3D) == HIGH){
@@ -288,8 +352,11 @@ void descendreDepuisEtage3() {
   }
 }
 
+/*
+ * Appelle l'ascenseur à l'étage 4. En indiquant que l'on souhaite descendre (pour les priotités)
+ */
 void descendreDepuisEtage4() {
-  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH){
+  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3){
     if(digitalRead(ledEt4D) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
@@ -305,18 +372,20 @@ void descendreDepuisEtage4() {
   }
 }
 
+/*
+ * Appelle l'ascenseur à l'étage 5. En indiquant que l'on souhaite descendre (pour les priotités)
+ */
 void descendreDepuisEtage5() {
-  if(digitalRead(ledDetecEt1)== HIGH || digitalRead(ledDetecEt2)== HIGH || digitalRead(ledDetecEt3)== HIGH || digitalRead(ledDetecEt4)== HIGH){
+  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3 || cabineEstAEtage4){
     if (digitalRead(ledEt5D) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
   }
-  if(digitalRead(ledDetecEt5) == HIGH){
-        digitalWrite(MotM,LOW);
-        digitalWrite(ledEt5D,LOW);
-  }
-}
 
+/*
+ * Affiche sur l'afficheur 7 segments l'étage où se trouve la cabine. 
+ * Prend en argument l'étage pour allumer ou éteindre les bits.
+ */
 void afficheurEtage(int numeroEtage){
   switch(numeroEtage){
     case 1 : digitalWrite(bit0,HIGH);
@@ -341,7 +410,9 @@ void afficheurEtage(int numeroEtage){
               break;
   }
 }
-
+/*
+ * Amène la cabine à un étage si cette dernière se trouve entre 2 étages lors d'un arrêt d'urgence
+ */
 void initialisation(){
    do{
       digitalWrite(MotD,HIGH);
@@ -349,6 +420,10 @@ void initialisation(){
       digitalWrite(MotD,LOW);
 }
 
+/*
+ * Si une porte s'ouvre pendant le fonctionnement de la cabine, 
+ * les moteurs s'éteignent sans pour autant effacer le parcours prévu
+ */
 void porte(){
     if(digitalRead(porteEt5) != HIGH || digitalRead(porteEt4) != HIGH || digitalRead(porteEt3) != HIGH || digitalRead(porteEt2) != HIGH || digitalRead(porteEt1) != HIGH){
       digitalWrite(MotM,LOW);
@@ -357,6 +432,11 @@ void porte(){
 }
 
 void loop(){
+    cabineEstAEtage1 = (digitalRead(bit0) == HIGH && digitalRead(bit1) == LOW && digitalRead(bit2) == LOW);
+  cabineEstAEtage2 = (digitalRead(bit0) == LOW && digitalRead(bit1) == HIGH && digitalRead(bit2) == LOW);
+  cabineEstAEtage3 = ((digitalRead(bit0) == HIGH) && (digitalRead(bit1) == HIGH) && (digitalRead(bit2) == LOW));
+  cabineEstAEtage4 = (digitalRead(bit0) == LOW && digitalRead(bit1) == LOW && digitalRead(bit2) == HIGH);
+  cabineEstAEtage5 = (digitalRead(bit0) == HIGH && digitalRead(bit1) == LOW && digitalRead(bit2) == HIGH);
   if(digitalRead(ledUrgence) == LOW){
     arret_urgence();
     initialisation();
@@ -378,7 +458,6 @@ void loop(){
     if(digitalRead(etage5)== HIGH){
       allerEtage5();
     }
-<<<<<<< HEAD
   }
   if(digitalRead(ledEt1M)== HIGH || digitalRead(ledEt2M)== HIGH || digitalRead(ledEt3M)== HIGH || digitalRead(ledEt4M)== HIGH || digitalRead(MotM) != HIGH && digitalRead(ledDetecEt1) == HIGH){
    if(digitalRead(ledEt1M)== HIGH){
@@ -430,6 +509,34 @@ void loop(){
    }
   }
 
+    if(digitalRead(ledEt1M)== HIGH || digitalRead(ledEt2M)== HIGH || digitalRead(ledEt3M)== HIGH || digitalRead(ledEt4M)== HIGH || digitalRead(MotM) != HIGH && digitalRead(ledDetecEt1) == HIGH){
+    if(digitalRead(ledEt1M)== HIGH){
+      monterDepuisEtage1();
+    }
+    if(digitalRead(ledEt2M)== HIGH){
+      monterDepuisEtage2();
+    }
+    if(digitalRead(ledEt3M)== HIGH ){
+      monterDepuisEtage3();
+    }
+    if(digitalRead(ledEt4M)== HIGH){
+      monterDepuisEtage4();
+    }
+    }
+    if(digitalRead(ledEt2D)== HIGH || digitalRead(ledEt3D)== HIGH || digitalRead(ledEt4D)== HIGH || digitalRead(ledEt5D)== HIGH || digitalRead(MotD) != HIGH && digitalRead(ledDetecEt5) == HIGH){
+    if(digitalRead(ledEt2D)== HIGH){
+      descendreDepuisEtage2();
+    }
+    if(digitalRead(ledEt3D)== HIGH){
+      descendreDepuisEtage3();
+    }
+    if(digitalRead(ledEt4D)== HIGH){
+      descendreDepuisEtage4();
+    }
+    if(digitalRead(ledEt5D)== HIGH){
+      descendreDepuisEtage5();
+    }
+  }
   
   if(digitalRead(ledDetecEt5) == HIGH){
     afficheurEtage(5);
