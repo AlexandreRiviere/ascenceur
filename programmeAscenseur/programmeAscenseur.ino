@@ -378,7 +378,6 @@ void loop(){
     if(digitalRead(etage5)== HIGH){
       allerEtage5();
     }
-<<<<<<< HEAD
   }
   if(digitalRead(ledEt1M)== HIGH || digitalRead(ledEt2M)== HIGH || digitalRead(ledEt3M)== HIGH || digitalRead(ledEt4M)== HIGH || digitalRead(MotM) != HIGH && digitalRead(ledDetecEt1) == HIGH){
    if(digitalRead(ledEt1M)== HIGH){
