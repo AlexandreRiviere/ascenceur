@@ -378,6 +378,7 @@ void loop(){
     if(digitalRead(etage5)== HIGH){
       allerEtage5();
     }
+<<<<<<< HEAD
   }
   if(digitalRead(ledEt1M)== HIGH || digitalRead(ledEt2M)== HIGH || digitalRead(ledEt3M)== HIGH || digitalRead(ledEt4M)== HIGH || digitalRead(MotM) != HIGH && digitalRead(ledDetecEt1) == HIGH){
    if(digitalRead(ledEt1M)== HIGH){
@@ -389,13 +390,44 @@ void loop(){
     }
     if(digitalRead(ledEt3D)== HIGH){
       descendreDepuisEtage3();
+  
+  if((digitalRead(MotD) == LOW 
+  && (digitalRead(ledEt2D) == LOW || digitalRead(ledEt3D) == LOW || digitalRead(ledEt4D) == LOW || digitalRead(ledEt5D) == LOW)) || digitalRead(MotM) == HIGH
+  || (digitalRead(MotD) == HIGH
+  && (digitalRead(ledEt2D) == LOW || digitalRead(ledEt3D) == LOW || digitalRead(ledEt4D) == LOW || digitalRead(ledEt5D) == LOW))){
+  
+    if(digitalRead(ledEt1M)== HIGH){
+      monterDepuisEtage1();
     }
-    if(digitalRead(ledEt4D)== HIGH){
-      descendreDepuisEtage4();
+    if(digitalRead(ledEt2M)== HIGH && digitalRead(etage1) == LOW){
+      monterDepuisEtage2();
     }
+    if(digitalRead(ledEt3M)== HIGH && digitalRead(etage1) == LOW && digitalRead(etage2) == LOW){
+      monterDepuisEtage3();
+    }
+    if(digitalRead(ledEt4M)== HIGH && digitalRead(etage1) == LOW && digitalRead(etage2) == LOW && digitalRead(etage3) == LOW){
+      monterDepuisEtage4();
+    }
+   }
+
+     if((digitalRead(MotM) == LOW 
+  && (digitalRead(ledEt1M) == LOW || digitalRead(ledEt2M) == LOW || digitalRead(ledEt3M) == LOW || digitalRead(ledEt4M) == LOW)) || digitalRead(MotD) == HIGH
+  || (digitalRead(MotM) == HIGH
+  && (digitalRead(ledEt1M) == LOW || digitalRead(ledEt2M) == LOW || digitalRead(ledEt3M) == LOW || digitalRead(ledEt4M) == LOW))){
+  
     if(digitalRead(ledEt5D)== HIGH){
       descendreDepuisEtage5();
     }
+    if(digitalRead(ledEt4D)== HIGH && digitalRead(etage5) == LOW){
+      descendreDepuisEtage4();
+    }
+    if(digitalRead(ledEt3D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW){
+      descendreDepuisEtage3();
+    }
+    if(digitalRead(ledEt2D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW && digitalRead(etage3) == LOW){
+      descendreDepuisEtage2();
+    }
+   }
   }
 
   
