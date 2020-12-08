@@ -58,11 +58,11 @@ int porteEt3 = 43;
 int porteEt4 = 42;
 int porteEt5 = 41;
 
-boolean cabineEstAEtage1;
-boolean cabineEstAEtage2;
-boolean cabineEstAEtage3;
-boolean cabineEstAEtage4;
-boolean cabineEstAEtage5;
+bool cabineEstAEtage1;
+bool cabineEstAEtage2;
+bool cabineEstAEtage3;
+bool cabineEstAEtage4;
+bool cabineEstAEtage5;
 
 /* 
  *  Initialisation des différents pins,
@@ -117,11 +117,7 @@ void setup() {
   pinMode(BPEtage4D,INPUT);
   pinMode(BPEtage5D,INPUT);
 
-  cabineEstAEtage1 = (digitalRead(bit0) == HIGH && digitalRead(bit1) == LOW && digitalRead(bit2) == LOW);
-  cabineEstAEtage2 = (digitalRead(bit0) == LOW && digitalRead(bit1) == HIGH && digitalRead(bit2) == LOW);
-  cabineEstAEtage3 = (digitalRead(bit0) == HIGH && digitalRead(bit1) == HIGH && digitalRead(bit2) == LOW);
-  cabineEstAEtage4 = (digitalRead(bit0) == LOW && digitalRead(bit1) == LOW && digitalRead(bit2) == HIGH);
-  cabineEstAEtage5 = (digitalRead(bit0) == HIGH && digitalRead(bit1) == LOW && digitalRead(bit2) == HIGH);
+
 }
 /*
  * Méthode arrêt d'urgence qui coupe tout.
@@ -435,6 +431,11 @@ void porte(){
 }
 
 void loop(){
+    cabineEstAEtage1 = (digitalRead(bit0) == HIGH && digitalRead(bit1) == LOW && digitalRead(bit2) == LOW);
+  cabineEstAEtage2 = (digitalRead(bit0) == LOW && digitalRead(bit1) == HIGH && digitalRead(bit2) == LOW);
+  cabineEstAEtage3 = ((digitalRead(bit0) == HIGH) && (digitalRead(bit1) == HIGH) && (digitalRead(bit2) == LOW));
+  cabineEstAEtage4 = (digitalRead(bit0) == LOW && digitalRead(bit1) == LOW && digitalRead(bit2) == HIGH);
+  cabineEstAEtage5 = (digitalRead(bit0) == HIGH && digitalRead(bit1) == LOW && digitalRead(bit2) == HIGH);
   if(digitalRead(ledUrgence) == LOW){
     arret_urgence();
     initialisation();
