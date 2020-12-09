@@ -265,7 +265,7 @@ void monterDepuisEtage2(){
  */
 void monterDepuisEtage3() {
   if (digitalRead(ledEt3M) == HIGH) {
-    if (cabineEstAEtage1 || cabineEstAEtage2) {
+    if (cabineEstAEtage1 || cabineEstAEtage2 ||cabineEstAEtage3) {
       digitalWrite(MotM,HIGH);
     } else {
       if(digitalRead(ledEt3M) == HIGH){
@@ -285,7 +285,7 @@ void monterDepuisEtage3() {
  * Appelle l'ascenseur à l'étage 4. En indiquant que l'on souhaite monter (pour les priotités)
  */
 void monterDepuisEtage4(){
-  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3){
+  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3 || cabineEstAEtage4){
     if (digitalRead(ledEt4M) == HIGH){
         digitalWrite(MotM,HIGH); 
     }
@@ -326,7 +326,7 @@ void descendreDepuisEtage2() {
  */
 void descendreDepuisEtage3() {
   if (digitalRead(ledEt3D) == HIGH) {
-    if (cabineEstAEtage4 || cabineEstAEtage5) {
+    if (cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5) {
       digitalWrite(MotD,HIGH);
     } else {
       if(digitalRead(ledEt3D) == HIGH){
@@ -369,7 +369,11 @@ void descendreDepuisEtage5() {
   if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3 || cabineEstAEtage4){
     if (digitalRead(ledEt5D) == HIGH){
         digitalWrite(MotM,HIGH); 
-    }
+    }   
+  }
+    if(digitalRead(ledDetecEt5) == HIGH){
+        digitalWrite(MotM,LOW);
+        digitalWrite(ledEt5D,LOW);
   }
 }
 /*
