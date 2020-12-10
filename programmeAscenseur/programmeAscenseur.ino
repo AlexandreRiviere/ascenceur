@@ -58,6 +58,7 @@ int porteEt3 = 43;
 int porteEt4 = 42;
 int porteEt5 = 41;
 
+/* Booleen vrai si la cabine est à l'étage */
 bool cabineEstAEtage1;
 bool cabineEstAEtage2;
 bool cabineEstAEtage3;
@@ -142,13 +143,13 @@ void arret_urgence() {
  * Pemet d'aller à l'étage 1 lorsqu'on appuie sur le bouton 1 dans la cabine
  */
 void allerEtage1() {
- 
-  if(digitalRead(etage1) == HIGH){
-      digitalWrite(MotD,HIGH);
+  
+  if(digitalRead(etage1) == HIGH){ // si le bouton cabine 1 est allumé 
+      digitalWrite(MotD,HIGH);     // allumé le moteur pour descendre
   }
-  if(digitalRead(ledDetecEt1) == HIGH){
-      digitalWrite(MotD,LOW);
-      digitalWrite(etage1,LOW);
+  if(digitalRead(ledDetecEt1) == HIGH){ // si on detecte la cabine à l'étage 1
+      digitalWrite(MotD,LOW);           // on eteint le moteur
+      digitalWrite(etage1,LOW);         // on eteint le led cabine 1
   }
 }
 
@@ -156,19 +157,19 @@ void allerEtage1() {
  * Pemet d'aller à l'étage 2 lorsqu'on appuie sur le bouton 2 dans la cabine
  */
 void allerEtage2() {
-  if(cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){
-    if(digitalRead(etage2) == HIGH){
-        digitalWrite(MotD,HIGH); 
+  if(cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){ // si la cabine est à l'étage 3, 4 ou 5
+    if(digitalRead(etage2) == HIGH){                            // si la led du bouton cabine 2 est allumé
+        digitalWrite(MotD,HIGH);                                // on allume le moteur pour descendre
     }
   }else {
-    if(digitalRead(etage2) == HIGH){
-        digitalWrite(MotM,HIGH); 
+    if(digitalRead(etage2) == HIGH){                            // si la led du bouton cabine 2 est allumé
+        digitalWrite(MotM,HIGH);                                // on allume le moteur pour monter
     }
   }
-  if(digitalRead(ledDetecEt2) == HIGH){
-        digitalWrite(MotD,LOW);
-        digitalWrite(MotM,LOW);
-        digitalWrite(etage2,LOW);
+  if(digitalRead(ledDetecEt2) == HIGH){                         // si on detecte la cabine à l'étage 2
+        digitalWrite(MotD,LOW);                                 // on eteint le moteur 
+        digitalWrite(MotM,LOW);                                 
+        digitalWrite(etage2,LOW);                               // on eteint la led du bouton cabine 2
     }
 }
 
@@ -176,19 +177,19 @@ void allerEtage2() {
  * Pemet d'aller à l'étage 3 lorsqu'on appuie sur le bouton 3 dans la cabine
  */
 void allerEtage3() {
-  if(cabineEstAEtage4 || cabineEstAEtage5){
-    if(digitalRead(etage3) == HIGH){
-        digitalWrite(MotD,HIGH); 
+  if(cabineEstAEtage4 || cabineEstAEtage5){  // si l'ascenseur est à l'étage 4 ou 5
+    if(digitalRead(etage3) == HIGH){         // si la led du bouton cabine 3 est allumé
+        digitalWrite(MotD,HIGH);             // on allume le moteur pour descendre
     }
   }else{
-    if(digitalRead(etage3) == HIGH){
-        digitalWrite(MotM,HIGH); 
+    if(digitalRead(etage3) == HIGH){         // si la led du bouton cabine 3 est allumé
+        digitalWrite(MotM,HIGH);             // on allume le moteur pour monter
     }
   }
-  if(digitalRead(ledDetecEt3) == HIGH){
-       digitalWrite(MotD,LOW);
+  if(digitalRead(ledDetecEt3) == HIGH){      // si la cabine est detecté a l'étage 3
+       digitalWrite(MotD,LOW);               // on eteint le moteur
        digitalWrite(MotM,LOW);
-       digitalWrite(etage3,LOW);
+       digitalWrite(etage3,LOW);             //on eteint la led du bouton cabine 3
   }
 }
 
@@ -196,19 +197,19 @@ void allerEtage3() {
  * Pemet d'aller à l'étage 4 lorsqu'on appuie sur le bouton 4 dans la cabine
  */
 void allerEtage4() {
-  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3){
-    if(digitalRead(etage4) == HIGH){
-        digitalWrite(MotM,HIGH); 
+  if(cabineEstAEtage1 || cabineEstAEtage2 || cabineEstAEtage3){  // si la cabine est à l'étage 1, 2 ou 3 
+    if(digitalRead(etage4) == HIGH){                             // si la led de bouton cabine 4 est allumé
+        digitalWrite(MotM,HIGH);                                 // on allume le moteur pour monter
     }
   }else {
-    if(digitalRead(etage4) == HIGH){
-        digitalWrite(MotD,HIGH); 
+    if(digitalRead(etage4) == HIGH){                             // si la led du bouton cabine 4 est allumé
+        digitalWrite(MotD,HIGH);                                 // on allume le moteur pour descendre
     }
   }
-  if(digitalRead(ledDetecEt4) == HIGH){
-        digitalWrite(MotD,LOW);
+  if(digitalRead(ledDetecEt4) == HIGH){                          // si la cabine est detecté à l'étage 4
+        digitalWrite(MotD,LOW);                                  // on eteint les moteurs
         digitalWrite(MotM,LOW);
-        digitalWrite(etage4,LOW);
+        digitalWrite(etage4,LOW);                                // on eteint la led cabine 4
     }
 }
 
@@ -216,12 +217,12 @@ void allerEtage4() {
  * Pemet d'aller à l'étage 5 lorsqu'on appuie sur le bouton 5 dans la cabine
  */
 void allerEtage5() {
-    if(digitalRead(etage5) == HIGH){
-        digitalWrite(MotM,HIGH);
+    if(digitalRead(etage5) == HIGH){          // si la led bouton cabine 5 est allumé
+        digitalWrite(MotM,HIGH);              // on allume le moteur pour monter
     }
-    if(digitalRead(ledDetecEt5) == HIGH){
-        digitalWrite(MotM,LOW);
-        digitalWrite(etage5,LOW);
+    if(digitalRead(ledDetecEt5) == HIGH){     // si la cabine est detecté à l'étage 5
+        digitalWrite(MotM,LOW);               // on eteint le moteur
+        digitalWrite(etage5,LOW);             // on eteint le bouton cabine 5
     }
 }
 
@@ -229,14 +230,14 @@ void allerEtage5() {
  * Appelle l'ascenseur à l'étage 1. En indiquant que l'on souhaite monter (pour les priotités)
  */
 void monterDepuisEtage1(){
-  if(cabineEstAEtage2 || cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){
-    if (digitalRead(ledEt1M) == HIGH){
-        digitalWrite(MotD,HIGH); 
+  if(cabineEstAEtage2 || cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){ // si la cabine n'est pas à l'étage 1
+    if (digitalRead(ledEt1M) == HIGH){                                              // si la led palier 1 est allumé
+        digitalWrite(MotD,HIGH);                                                    // on allume le moteur pour descendre
     }
   }
-  if(digitalRead(ledDetecEt1) == HIGH){
-        digitalWrite(MotD,LOW);
-        digitalWrite(ledEt1M,LOW);
+  if(digitalRead(ledDetecEt1) == HIGH){                                             // si la cabine est détecté a l'etage 1 
+        digitalWrite(MotD,LOW);                                                     // on eteint le moteur
+        digitalWrite(ledEt1M,LOW);                                                  // on eteint la led du palier 1
   }
 }
 
@@ -244,19 +245,19 @@ void monterDepuisEtage1(){
  * Appelle l'ascenseur à l'étage 2. En indiquant que l'on souhaite monter (pour les priotités)
  */
 void monterDepuisEtage2(){
-  if(cabineEstAEtage1){
-    if (digitalRead(ledEt2M) == HIGH){
-        digitalWrite(MotM,HIGH); 
+  if(cabineEstAEtage1){                     // si la cabine est à l'étage 1
+    if (digitalRead(ledEt2M) == HIGH){      // si la led palier de l'étage 2 pour monter est allumé
+        digitalWrite(MotM,HIGH);            // on allume le moteur pour monter
     }
   }else {
-    if(digitalRead(ledEt2M) == HIGH){
-        digitalWrite(MotD,HIGH); 
+    if(digitalRead(ledEt2M) == HIGH){       // si la led palier de l'étage 2 pour monter est allumé
+        digitalWrite(MotD,HIGH);            // on allume le moteur pour descendre
     }
   }
-  if(digitalRead(ledDetecEt2) == HIGH){
-        digitalWrite(MotD,LOW);
-        digitalWrite(MotM,LOW);
-        digitalWrite(ledEt2M,LOW);
+  if(digitalRead(ledDetecEt2) == HIGH){     // si la cabine est détecté à l'étage 2 
+        digitalWrite(MotD,LOW);             // on eteint les moteurs
+        digitalWrite(MotM,LOW);           
+        digitalWrite(ledEt2M,LOW);          // on eteint la led palier de l'étage 2 pour monter
   }
 }
 
