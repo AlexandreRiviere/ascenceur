@@ -144,12 +144,12 @@ void arret_urgence() {
  */
 void allerEtage1() {
   
-  if(digitalRead(etage1) == HIGH){ // si le bouton cabine 1 est allumé 
-    digitalWrite(MotD,HIGH);     // allumé le moteur pour descendre
+  if(digitalRead(etage1) == HIGH){      // si le bouton cabine 1 est allumé 
+    digitalWrite(MotD,HIGH);            // allumé le moteur pour descendre
   }
   if(digitalRead(ledDetecEt1) == HIGH){ // si on detecte la cabine à l'étage 1
-    digitalWrite(MotD,LOW);           // on eteint le moteur
-    digitalWrite(etage1,LOW);         // on eteint le led cabine 1
+    digitalWrite(MotD,LOW);             // on eteint le moteur
+    digitalWrite(etage1,LOW);           // on eteint le led cabine 1
   }
 }
 
@@ -159,17 +159,17 @@ void allerEtage1() {
 void allerEtage2() {
   if(cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){ // si la cabine est à l'étage 3, 4 ou 5
     if(digitalRead(etage2) == HIGH){                            // si la led du bouton cabine 2 est allumé
-      digitalWrite(MotD,HIGH);                                // on allume le moteur pour descendre
+      digitalWrite(MotD,HIGH);                                  // on allume le moteur pour descendre
     }
   }else {
     if(digitalRead(etage2) == HIGH){                            // si la led du bouton cabine 2 est allumé
-      digitalWrite(MotM,HIGH);                                // on allume le moteur pour monter
-    }
+      digitalWrite(MotM,HIGH);                                  // on allume le moteur pour monter
+    } 
   }
   if(digitalRead(ledDetecEt2) == HIGH){                         // si on detecte la cabine à l'étage 2
-    digitalWrite(MotD,LOW);                                 // on eteint le moteur 
+    digitalWrite(MotD,LOW);                                     // on eteint le moteur 
     digitalWrite(MotM,LOW);                                 
-    digitalWrite(etage2,LOW);                               // on eteint la led du bouton cabine 2
+    digitalWrite(etage2,LOW);                                   // on eteint la led du bouton cabine 2
   }
 }
 
@@ -187,9 +187,9 @@ void allerEtage3() {
     }
   }
   if(digitalRead(ledDetecEt3) == HIGH){      // si la cabine est detecté a l'étage 3
-    digitalWrite(MotD,LOW);               // on eteint le moteur
+    digitalWrite(MotD,LOW);                  // on eteint le moteur
     digitalWrite(MotM,LOW);
-    digitalWrite(etage3,LOW);             //on eteint la led du bouton cabine 3
+    digitalWrite(etage3,LOW);                //on eteint la led du bouton cabine 3
   }
 }
 
@@ -207,9 +207,9 @@ void allerEtage4() {
     }
   }
   if(digitalRead(ledDetecEt4) == HIGH){                          // si la cabine est detecté à l'étage 4
-    digitalWrite(MotD,LOW);                                  // on eteint les moteurs
+    digitalWrite(MotD,LOW);                                      // on eteint les moteurs
     digitalWrite(MotM,LOW);
-    digitalWrite(etage4,LOW);                                // on eteint la led cabine 4
+    digitalWrite(etage4,LOW);                                   // on eteint la led cabine 4
   }
 }
 
@@ -218,11 +218,11 @@ void allerEtage4() {
  */
 void allerEtage5() {
     if(digitalRead(etage5) == HIGH){          // si la led bouton cabine 5 est allumé
-      digitalWrite(MotM,HIGH);              // on allume le moteur pour monter
+      digitalWrite(MotM,HIGH);                // on allume le moteur pour monter
     }
     if(digitalRead(ledDetecEt5) == HIGH){     // si la cabine est detecté à l'étage 5
-      digitalWrite(MotM,LOW);               // on eteint le moteur
-      digitalWrite(etage5,LOW);             // on eteint le bouton cabine 5
+      digitalWrite(MotM,LOW);                 // on eteint le moteur
+      digitalWrite(etage5,LOW);               // on eteint le bouton cabine 5
     }
 }
 
@@ -232,13 +232,13 @@ void allerEtage5() {
 void monterDepuisEtage1(){
   if(cabineEstAEtage2 || cabineEstAEtage3 || cabineEstAEtage4 || cabineEstAEtage5){ // si la cabine n'est pas à l'étage 1
     if (digitalRead(ledEt1M) == HIGH){                                              // si la led palier 1 est allumé
-      digitalWrite(MotD,HIGH);                                                    // on allume le moteur pour descendre
+      digitalWrite(MotD,HIGH);                                                      // on allume le moteur pour descendre
     }
   }
   if(digitalRead(ledDetecEt1) == HIGH){                                             // si la cabine est détecté a l'etage 1 
-    digitalWrite(MotD,LOW);                                                     // on eteint le moteur
-    digitalWrite(ledEt1M,LOW);                                                  // on eteint la led du palier 1
-  }
+    digitalWrite(MotD,LOW);                                                         // on eteint le moteur
+    digitalWrite(ledEt1M,LOW);                                                      // on eteint la led du palier 1
+  }  
 }
 
 /*
@@ -247,17 +247,17 @@ void monterDepuisEtage1(){
 void monterDepuisEtage2(){
   if(cabineEstAEtage1){                     // si la cabine est à l'étage 1
     if (digitalRead(ledEt2M) == HIGH){      // si la led palier de l'étage 2 pour monter est allumé
-      digitalWrite(MotM,HIGH);            // on allume le moteur pour monter
+      digitalWrite(MotM,HIGH);              // on allume le moteur pour monter
     }
   }else {
     if(digitalRead(ledEt2M) == HIGH){       // si la led palier de l'étage 2 pour monter est allumé
-      digitalWrite(MotD,HIGH);            // on allume le moteur pour descendre
+      digitalWrite(MotD,HIGH);              // on allume le moteur pour descendre
     }
   }
   if(digitalRead(ledDetecEt2) == HIGH){     // si la cabine est détecté à l'étage 2 
-    digitalWrite(MotD,LOW);             // on eteint les moteurs
+    digitalWrite(MotD,LOW);                 // on eteint les moteurs
     digitalWrite(MotM,LOW);           
-    digitalWrite(ledEt2M,LOW);          // on eteint la led palier de l'étage 2 pour monter
+    digitalWrite(ledEt2M,LOW);              // on eteint la led palier de l'étage 2 pour monter
   }
 }
 
