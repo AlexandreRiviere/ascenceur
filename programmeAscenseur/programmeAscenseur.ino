@@ -68,7 +68,7 @@ bool cabineEstAEtage5;
 /* 
  *  Initialisation des différents pins,
  *  Si c'est un bouton, il sera initialisé en INPUT
- *  Si c'est un cpateur il sera initialisé en OUTPUT
+ *  Si c'est une led, il sera initialisé en OUTPUT
  */
 void setup() {
   pinMode(ledUrgence, INPUT);
