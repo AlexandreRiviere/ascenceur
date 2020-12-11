@@ -152,6 +152,7 @@ void allerEtage1() {
   if(digitalRead(ledDetecEt1) == HIGH){ // si on detecte la cabine à l'étage 1
     digitalWrite(MotD,LOW);             // on eteint le moteur
     digitalWrite(etage1,LOW);           // on eteint le led cabine 1
+    temps = millis();
   }
 }
 
@@ -189,6 +190,7 @@ void allerEtage3() {
     digitalWrite(MotD,LOW);                    // on eteint le moteur
     digitalWrite(MotM,LOW);
     digitalWrite(etage3,LOW);                  // on eteint la led du bouton cabine 3
+    temps = millis();
   }
 }
 
@@ -207,6 +209,7 @@ void allerEtage4() {
     digitalWrite(MotD,LOW);                                        // on eteint les moteurs
     digitalWrite(MotM,LOW);
     digitalWrite(etage4,LOW);                                      // on eteint la led cabine 4
+    temps = millis();
   }
 }
 
@@ -220,6 +223,7 @@ void allerEtage5() {
     if(digitalRead(ledDetecEt5) == HIGH){     // si la cabine est detecté à l'étage 5
       digitalWrite(MotM,LOW);                 // on eteint le moteur
       digitalWrite(etage5,LOW);               // on eteint le bouton cabine 5
+      temps = millis();
     }
 }
 
@@ -235,6 +239,7 @@ void monterDepuisEtage1(){
   if(digitalRead(ledDetecEt1) == HIGH){                                             // si la cabine est détecté a l'etage 1 
     digitalWrite(MotD,LOW);                                                         // on eteint le moteur
     digitalWrite(ledEt1M,LOW);                                                      // on eteint la led du palier 1
+    temps = millis();
   }  
 }
 
@@ -253,6 +258,7 @@ void monterDepuisEtage2(){
     digitalWrite(MotD,LOW);                 // on eteint les moteurs
     digitalWrite(MotM,LOW);           
     digitalWrite(ledEt2M,LOW);              // on eteint la led palier de l'étage 2 pour monter
+    temps = millis();
   }
 }
 
@@ -272,6 +278,7 @@ void monterDepuisEtage3() {
     digitalWrite(ledEt3M,LOW);                  // on eteint la led palier de l'étage 3 pour monter
     digitalWrite(MotM,LOW);                     // on eteint les moteurs
     digitalWrite(MotD,LOW);
+    temps = millis();
   }
 }
 
@@ -290,6 +297,7 @@ void monterDepuisEtage4(){
     digitalWrite(MotD,LOW);                                                               // on eteint les moteurs
     digitalWrite(MotM,LOW);
     digitalWrite(ledEt4M,LOW);                                                            // on eteint la led palier de l'étage 4 pour monter
+    temps = millis();
   }
 }
 
@@ -309,6 +317,7 @@ void descendreDepuisEtage2() {
     digitalWrite(MotD,LOW);                               // on eteint les moteurs
     digitalWrite(MotM,LOW);
     digitalWrite(ledEt2D,LOW);                            // on eteint la led palier de l'étage 2 pour descendre
+    temps = millis();
   }
 }
 
@@ -328,6 +337,7 @@ void descendreDepuisEtage3() {
     digitalWrite(ledEt3D,LOW);                                          // on eteint la led palier de l'étage 3 pour descendre                               
     digitalWrite(MotM,LOW);                                             // on eteint les moteurs
     digitalWrite(MotD,LOW);
+    temps = millis();
   }
 }
 
@@ -346,6 +356,7 @@ void descendreDepuisEtage4() {
     digitalWrite(MotD,LOW);                                               // on eteint les moteurs
     digitalWrite(MotM,LOW);
     digitalWrite(ledEt4D,LOW);                                            // on eteint la led palier de l'étage 4 pour descendre
+    temps = millis();
   }
 }
 
@@ -361,6 +372,7 @@ void descendreDepuisEtage5() {
     if(digitalRead(ledDetecEt5) == HIGH){                                                 // si la cabine est détecté à l'étage 5
       digitalWrite(MotM,LOW);                                                             // on eteint le moteur
       digitalWrite(ledEt5D,LOW);                                                          // si la led palier de l'étage 5 pour descendre est allumé
+      temps = millis();
   }
 }
 /*
@@ -430,23 +442,23 @@ void loop(){
     porte();
   }else {
     /* si la led du bouton cabine étage 1 est allumé */
-    if(digitalRead(etage1)== HIGH && (millis() - temps) > 2000){
+    if(digitalRead(etage1)== HIGH && (millis() - temps) > 3000){
       allerEtage1();
     }
     /* si la led du bouton cabine étage 2 est allumé */
-    if(digitalRead(etage2)== HIGH){
+    if(digitalRead(etage2)== HIGH && (millis() - temps) > 3000){
       allerEtage2();
     }
     /* si la led du bouton cabine étage 3 est allumé */
-    if(digitalRead(etage3)== HIGH){
+    if(digitalRead(etage3)== HIGH && (millis() - temps) > 3000){
       allerEtage3();
     }
     /* si la led du bouton cabine étage 4 est allumé */
-    if(digitalRead(etage4)== HIGH){
+    if(digitalRead(etage4)== HIGH && (millis() - temps) > 3000){
       allerEtage4();
     }
     /* si la led du bouton cabine étage 5 est allumé */
-    if(digitalRead(etage5)== HIGH){
+    if(digitalRead(etage5)== HIGH && (millis() - temps) > 3000){
       allerEtage5();
     }
   
@@ -457,19 +469,19 @@ void loop(){
               || digitalRead(MotM) == HIGH || (digitalRead(MotD) == HIGH )){
     
     /* si la led palier de l'étage 1 pour monter est allumé */
-    if(digitalRead(ledEt1M)== HIGH){
+    if(digitalRead(ledEt1M)== HIGH && (millis() - temps) > 3000){
       monterDepuisEtage1();
     }
     /* si la led palier de l'étage 2 pour monter est allumé et que le bouton cabine 1 n'est pas allumé */
-    if(digitalRead(ledEt2M)== HIGH && digitalRead(etage1) == LOW){
+    if(digitalRead(ledEt2M)== HIGH && digitalRead(etage1) == LOW && (millis() - temps) > 3000){
       monterDepuisEtage2();
     }
     /* si la led palier de l'étage 3 pour monter est allumé et que les bouton cabine 1 et 2 ne sont pas allumé */
-    if(digitalRead(ledEt3M)== HIGH && digitalRead(etage1) == LOW && digitalRead(etage2) == LOW){
+    if(digitalRead(ledEt3M)== HIGH && digitalRead(etage1) == LOW && digitalRead(etage2) == LOW && (millis() - temps) > 3000){
       monterDepuisEtage3();
     }
     /* si la led palier de l'étage 4 pour monter est allumé et que les bouton cabine 1,2 et 3 ne sont pas allumé */
-    if(digitalRead(ledEt4M)== HIGH && digitalRead(etage1) == LOW && digitalRead(etage2) == LOW && digitalRead(etage3) == LOW){
+    if(digitalRead(ledEt4M)== HIGH && digitalRead(etage1) == LOW && digitalRead(etage2) == LOW && digitalRead(etage3) == LOW && (millis() - temps) > 3000){
       monterDepuisEtage4();
     }
   }
@@ -481,19 +493,19 @@ void loop(){
               || digitalRead(MotD) == HIGH || (digitalRead(MotM) == HIGH)){
   
     /* si la led palier de l'étage 5 pour descendre est allumé */
-    if(digitalRead(ledEt5D)== HIGH){
+    if(digitalRead(ledEt5D)== HIGH && (millis() - temps) > 3000){
       descendreDepuisEtage5();
     }
     /* si la led palier de l'étage 4 pour descendre est allumé et que les bouton cabine 5 ne sont pas allumé */
-    if(digitalRead(ledEt4D)== HIGH && digitalRead(etage5) == LOW){
+    if(digitalRead(ledEt4D)== HIGH && digitalRead(etage5) == LOW && (millis() - temps) > 3000){
       descendreDepuisEtage4();
     }
     /* si la led palier de l'étage 3 pour descendre est allumé et que les bouton cabine 4 et 5 ne sont pas allumé */
-    if(digitalRead(ledEt3D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW){
+    if(digitalRead(ledEt3D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW && (millis() - temps) > 3000){
       descendreDepuisEtage3();
     }
     /* si la led palier de l'étage 2 pour descendre est allumé et que les bouton cabine 3,4 et 5 ne sont pas allumé */
-    if(digitalRead(ledEt2D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW && digitalRead(etage3) == LOW){
+    if(digitalRead(ledEt2D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW && digitalRead(etage3) == LOW && (millis() - temps) > 3000){
       descendreDepuisEtage2();
     }
    }
