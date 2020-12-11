@@ -65,6 +65,8 @@ bool cabineEstAEtage3;
 bool cabineEstAEtage4;
 bool cabineEstAEtage5;
 
+long temps; // variable qui stocke la mesure du temps
+
 /* 
  *  Initialisation des différents pins,
  *  Si c'est un bouton, il sera initialisé en INPUT
@@ -168,6 +170,7 @@ void allerEtage2() {
     digitalWrite(MotD,LOW);                                       // on eteint le moteur 
     digitalWrite(MotM,LOW);                                 
     digitalWrite(etage2,LOW);                                     // on eteint la led du bouton cabine 2
+    temps = millis();
   }
 }
 
@@ -427,7 +430,7 @@ void loop(){
     porte();
   }else {
     /* si la led du bouton cabine étage 1 est allumé */
-    if(digitalRead(etage1)== HIGH){
+    if(digitalRead(etage1)== HIGH && (millis() - temps) > 2000){
       allerEtage1();
     }
     /* si la led du bouton cabine étage 2 est allumé */
