@@ -511,7 +511,7 @@ void loop(){
     if(digitalRead(ledEt2D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW && digitalRead(etage3) == LOW && (millis() - temps) > 3000){
       descendreDepuisEtage2();
       if(digitalRead(ledEt2D) == HIGH){
-        descendreDepuisEtage2();
+        monterDepuisEtage2();
       }
     }
   }
