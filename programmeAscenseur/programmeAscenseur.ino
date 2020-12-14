@@ -510,7 +510,7 @@ void loop(){
     /* si la led palier de l'étage 2 pour descendre est allumé et que les bouton cabine 3,4 et 5 ne sont pas allumé */
     if(digitalRead(ledEt2D)== HIGH && digitalRead(etage5) == LOW && digitalRead(etage4) == LOW && digitalRead(etage3) == LOW && (millis() - temps) > 3000){
       descendreDepuisEtage2();
-      if(digitalRead(ledEt2D) == HIGH){
+      if(digitalRead(ledEt2M) == HIGH){
         monterDepuisEtage2();
       }
     }
